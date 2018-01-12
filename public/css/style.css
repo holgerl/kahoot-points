@@ -1,6 +1,10 @@
 @font-face {font-family: "Alte Haas Grotesk"; src: url("../font/AlteHaasGroteskRegular.ttf");}
 @font-face {font-family: "Alte Haas Grotesk"; src: url("../font/AlteHaasGroteskBold.ttf"); font-weight: bold;}
 
+html {
+  font-size: 16px;
+}
+
 html, body {
   height:100%;
 }
@@ -15,6 +19,18 @@ body {
   height:100%;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+
+p {
+  font-size: 1.75rem;
+}
+
+table {
+  margin-bottom: 1rem;
+}
+
 div {
   margin: 0;
   padding: 0;
@@ -24,10 +40,22 @@ div {
   height:100%;
 }
 
-#appContainer {
+.appContainer {
   display: flex;
   background-color: #864cbf;
   height:100%;
+}
+
+#adminPage {
+  padding: 2rem;
+}
+
+#adminPage table {
+  font-size: 1.5rem;
+}
+
+#adminPage th {
+  width: 10rem;
 }
 
 a.button {
@@ -51,33 +79,33 @@ a.button:active {
 }
 
 a.button.arcade {
-  font-size: 5rem;
+  font-size: 4rem;
   padding: 1rem 2.25rem;
-  margin: 2rem;
-  margin-top: 3rem;
+  margin: 1.5rem;
 }
 
 a.button.control {
   border-width: 0.3rem;
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 1.75rem;
+  padding: 0.7rem;
   border-radius: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .left {
-	flex: 2;
+	flex: 6;
   padding: 2rem;
 }
 
 .right {
-	flex: 1;
+	flex: 5;
   display: flex;
   flex-direction: column;
   background-color: #45A3E5;
 }
 
 #items {
-  flex: 4;
+  flex: 3;
   padding: 2rem;
 }
 
@@ -89,6 +117,15 @@ a.button.control {
   flex: 1;
   padding: 2rem;
   background-color: #66bf39;
+  display: flex;
+}
+
+#totalScore .bonusTotal {
+  flex: 1;
+}
+
+#totalScore #controlPanel {
+  flex: 1;
 }
 
 td, th {

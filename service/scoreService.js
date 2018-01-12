@@ -1,15 +1,15 @@
 
-const points = {
+export const points = {
   A: 50,
   B: 30,
   C: 20,
   D: 15,
-}
+};
 
-const bonus = {
+export const bonus = {
   A: [200, 3],
   B: [90, 2],
-}
+};
 
 export const calculateScore = (item, amount) => {
   if (bonus[item] === undefined) {
@@ -28,4 +28,4 @@ export const calculateScore = (item, amount) => {
 
 export const calculateScoreWithoutBonus = (item, amount) => {
   return points[item] * amount;
-}
+};

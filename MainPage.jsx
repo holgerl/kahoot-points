@@ -35,7 +35,7 @@ class MainPage extends React.Component {
   // TODO: Something else than div for container
   render() {
     return (
-      <div id="appContainer">
+      <div className="appContainer">
         <Left 
           addItem={this.addItem}
         />
