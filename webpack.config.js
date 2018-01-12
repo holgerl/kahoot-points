@@ -34,6 +34,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       { from: 'public/font', to: 'font' },
+      { from: 'public/css', to: 'css' },
+      { from: 'public/index.html', to: 'index.html' },
     ]),
   ]
 }
