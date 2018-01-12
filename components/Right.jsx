@@ -46,7 +46,7 @@ const Right = ({items, resetItems}) => {
           </tbody>
         </table>
       </div>
-      
+
       <div id="totalScore">
         <h2>Bonuses {total - totalWithoutBonuses}</h2>
         <h2>Total {total}</h2>
@@ -56,5 +56,7 @@ const Right = ({items, resetItems}) => {
     </div>
   )
 }
+
+// TODO: Ask UX: What should scores show when no items picked? And when one of the items are not picked?
 
 export default Right

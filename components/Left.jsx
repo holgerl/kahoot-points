@@ -1,13 +1,24 @@
 import React from 'react';
 
+const buttonTypes = ["A", "B", "C", "D"];
+
+const makeButtons = (addItem) => {
+  return buttonTypes.map((name) => (
+    <a key={name} 
+      href="#" 
+      className="button arcade" 
+      onClick={() => addItem(name)}>
+        {name}
+    </a>
+  ))
+}
+
 const Left = ({addItem}) => {
   return (
     <div className='left'>
       <h1>Kahoot! Points</h1>
       <div>
-        <a href="#" className="button arcade" onClick={() => addItem("A")}>A</a>
-        <a href="#" className="button arcade" onClick={() => addItem("B")}>B</a>
-        <a href="#" className="button arcade" onClick={() => addItem("C")}>C</a>
+        {makeButtons(addItem)}
       </div>
     </div>
   )
