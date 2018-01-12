@@ -20217,7 +20217,7 @@ var _MainPage = __webpack_require__(89);
 
 var _MainPage2 = _interopRequireDefault(_MainPage);
 
-var _AdminPage = __webpack_require__(92);
+var _AdminPage = __webpack_require__(93);
 
 var _AdminPage2 = _interopRequireDefault(_AdminPage);
 
@@ -24246,41 +24246,43 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var buttonTypes = ["A", "B", "C", "D"];
+
+var makeButtons = function makeButtons(addItem) {
+  return buttonTypes.map(function (name) {
+    return _react2.default.createElement(
+      "a",
+      { key: name,
+        href: "#",
+        className: "button arcade",
+        onClick: function onClick() {
+          return addItem(name);
+        } },
+      name
+    );
+  });
+};
+
 var Left = function Left(_ref) {
   var addItem = _ref.addItem;
 
   return _react2.default.createElement(
-    'div',
-    { className: 'left' },
+    "div",
+    { className: "left" },
     _react2.default.createElement(
-      'h1',
+      "h1",
       null,
-      'Kahoot! Points'
+      "Kahoot! Points"
     ),
     _react2.default.createElement(
-      'div',
+      "h2",
       null,
-      _react2.default.createElement(
-        'a',
-        { href: '#', className: 'button arcade', onClick: function onClick() {
-            return addItem("A");
-          } },
-        'A'
-      ),
-      _react2.default.createElement(
-        'a',
-        { href: '#', className: 'button arcade', onClick: function onClick() {
-            return addItem("B");
-          } },
-        'B'
-      ),
-      _react2.default.createElement(
-        'a',
-        { href: '#', className: 'button arcade', onClick: function onClick() {
-            return addItem("C");
-          } },
-        'C'
-      )
+      "Items"
+    ),
+    _react2.default.createElement(
+      "div",
+      null,
+      makeButtons(addItem)
     )
   );
 };
@@ -24300,15 +24302,68 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _scoreService = __webpack_require__(92);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var itemRows = function itemRows(items) {
+  var keys = Object.keys(items);
+
+  keys.sort();
+
+  return keys.map(function (key) {
+    return _react2.default.createElement(
+      'tr',
+      { key: key },
+      _react2.default.createElement(
+        'td',
+        null,
+        key
+      ),
+      _react2.default.createElement(
+        'td',
+        null,
+        items[key]
+      ),
+      _react2.default.createElement(
+        'td',
+        null,
+        (0, _scoreService.calculateScore)(key, items[key])
+      )
+    );
+  });
+};
 
 var Right = function Right(_ref) {
   var items = _ref.items,
       resetItems = _ref.resetItems;
+
+
+  var sum = function sum(a, b) {
+    return a + b;
+  };
+
+  var total = Object.entries(items).map(function (_ref2) {
+    var _ref3 = _slicedToArray(_ref2, 2),
+        key = _ref3[0],
+        value = _ref3[1];
+
+    return (0, _scoreService.calculateScore)(key, value);
+  }).reduce(sum, 0);
+
+  var totalWithoutBonuses = Object.entries(items).map(function (_ref4) {
+    var _ref5 = _slicedToArray(_ref4, 2),
+        key = _ref5[0],
+        value = _ref5[1];
+
+    return (0, _scoreService.calculateScoreWithoutBonus)(key, value);
+  }).reduce(sum, 0);
 
   return _react2.default.createElement(
     'div',
@@ -24322,22 +24377,36 @@ var Right = function Right(_ref) {
         'Player items'
       ),
       _react2.default.createElement(
-        'p',
+        'table',
         null,
-        'A: ',
-        items.A
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'B: ',
-        items.B
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'C: ',
-        items.C
+        _react2.default.createElement(
+          'thead',
+          null,
+          _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+              'th',
+              null,
+              'Item'
+            ),
+            _react2.default.createElement(
+              'th',
+              null,
+              'Qty'
+            ),
+            _react2.default.createElement(
+              'th',
+              null,
+              'Score'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'tbody',
+          null,
+          itemRows(items)
+        )
       )
     ),
     _react2.default.createElement(
@@ -24346,7 +24415,14 @@ var Right = function Right(_ref) {
       _react2.default.createElement(
         'h2',
         null,
-        'Total score'
+        'Bonuses ',
+        total - totalWithoutBonuses
+      ),
+      _react2.default.createElement(
+        'h2',
+        null,
+        'Total ',
+        total
       ),
       _react2.default.createElement(
         'a',
@@ -24366,10 +24442,54 @@ var Right = function Right(_ref) {
   );
 };
 
+// TODO: Ask UX: What should scores show when no items picked? And when one of the items are not picked?
+
 exports.default = Right;
 
 /***/ }),
 /* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var points = {
+  A: 50,
+  B: 30,
+  C: 20,
+  D: 15
+};
+
+var bonus = {
+  A: [200, 3],
+  B: [90, 2]
+};
+
+var calculateScore = exports.calculateScore = function calculateScore(item, amount) {
+  if (bonus[item] === undefined) {
+    return points[item] * amount;
+  } else {
+    var multiples = bonus[item][1];
+    var bonusScore = bonus[item][0];
+
+    var bonuses = Math.floor(amount / multiples);
+
+    var rest = amount % multiples;
+
+    return bonusScore * bonuses + rest * points[item];
+  }
+};
+
+var calculateScoreWithoutBonus = exports.calculateScoreWithoutBonus = function calculateScoreWithoutBonus(item, amount) {
+  return points[item] * amount;
+};
+
+/***/ }),
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
