@@ -17,6 +17,7 @@ const Left = ({addItem}) => {
   return (
     <div className='left'>
       <h1>Kahoot! Points</h1>
+      <h2>Items</h2>
       <div>
         {makeButtons(addItem)}
       </div>
