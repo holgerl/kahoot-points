@@ -58,6 +58,7 @@ a.button.arcade {
 }
 
 a.button.control {
+  border-width: 0.3rem;
   font-size: 2rem;
   padding: 1rem;
   border-radius: 1rem;
@@ -80,10 +81,19 @@ a.button.control {
   padding: 2rem;
 }
 
+#items table {
+  font-size: 2rem;
+}
+
 #totalScore {
   flex: 1;
   padding: 2rem;
   background-color: #66bf39;
+}
+
+td, th {
+    width: 8rem;
+    text-align: left;
 }
 
 // TODO: Inline styling, perhaps?
