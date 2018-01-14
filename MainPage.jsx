@@ -2,21 +2,18 @@ import React from 'react';
 import Left from './components/Left.jsx';
 import Right from './components/Right.jsx';
 
+const initialState = () => ({items: {}});
+
 class MainPage extends React.Component {
-
-  initialState() {
-    return {items: {}};
-  }
-
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
     this.resetItems = this.resetItems.bind(this);
-    this.state = this.initialState();
+    this.state = initialState();
   }
 
   addItem(type) {
-    const items = this.state.items;
+    const {items} = this.state;
     const newAmount = items[type] === undefined ? 1 : items[type] + 1;
 
     const newItem = {};
@@ -28,7 +25,7 @@ class MainPage extends React.Component {
   }
 
   resetItems() {
-    this.setState(this.initialState());
+    this.setState(initialState());
   }
 
 
@@ -36,12 +33,12 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="appContainer">
-        <Left 
+        <Left
           addItem={this.addItem}
         />
-        <Right 
-          items={this.state.items} 
-          resetItems={this.resetItems} 
+        <Right
+          items={this.state.items}
+          resetItems={this.resetItems}
         />
       </div>
     );

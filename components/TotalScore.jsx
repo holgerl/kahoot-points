@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {calculateScore, calculateScoreWithoutBonus} from '../service/scoreService.js'
+import {calculateScore, calculateScoreWithoutBonus} from '../service/scoreService.js';
 
 const TotalScore = ({items, resetItems}) => {
-
   const sum = (a, b) => a + b;
 
   const total = Object.entries(items)
@@ -21,11 +20,11 @@ const TotalScore = ({items, resetItems}) => {
         <p>Total {total}</p>
       </div>
       <div className="controlPanel">
-        <a className="button control" href="#" onClick={resetItems}>New game</a>
+        <button className="button control" href="#" onClick={resetItems}>New game</button>
         <p><a className="button control" href="#/admin">Admin</a></p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TotalScore
+export default TotalScore;

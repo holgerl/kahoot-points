@@ -5,11 +5,6 @@ import MainPage from './MainPage.jsx';
 import AdminPage from './AdminPage.jsx';
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <HashRouter>

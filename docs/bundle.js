@@ -1341,16 +1341,16 @@ var bonus = exports.bonus = {
 var calculateScore = exports.calculateScore = function calculateScore(item, amount) {
   if (bonus[item] === undefined) {
     return points[item] * amount;
-  } else {
-    var multiples = bonus[item][1];
-    var bonusScore = bonus[item][0];
-
-    var bonuses = Math.floor(amount / multiples);
-
-    var rest = amount % multiples;
-
-    return bonusScore * bonuses + rest * points[item];
   }
+
+  var multiples = bonus[item][1];
+  var bonusScore = bonus[item][0];
+
+  var bonuses = Math.floor(amount / multiples);
+
+  var rest = amount % multiples;
+
+  return bonusScore * bonuses + rest * points[item];
 };
 
 var calculateScoreWithoutBonus = exports.calculateScoreWithoutBonus = function calculateScoreWithoutBonus(item, amount) {
@@ -2772,7 +2772,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
+_reactDom2.default.render(_react2.default.createElement(_App2.default), document.getElementById('app'));
 
 /***/ }),
 /* 43 */
@@ -20273,10 +20273,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App(props) {
+  function App() {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
   }
 
   _createClass(App, [{
@@ -24204,15 +24204,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var initialState = function initialState() {
+  return { items: {} };
+};
+
 var MainPage = function (_React$Component) {
   _inherits(MainPage, _React$Component);
-
-  _createClass(MainPage, [{
-    key: 'initialState',
-    value: function initialState() {
-      return { items: {} };
-    }
-  }]);
 
   function MainPage(props) {
     _classCallCheck(this, MainPage);
@@ -24221,7 +24218,7 @@ var MainPage = function (_React$Component) {
 
     _this.addItem = _this.addItem.bind(_this);
     _this.resetItems = _this.resetItems.bind(_this);
-    _this.state = _this.initialState();
+    _this.state = initialState();
     return _this;
   }
 
@@ -24229,6 +24226,7 @@ var MainPage = function (_React$Component) {
     key: 'addItem',
     value: function addItem(type) {
       var items = this.state.items;
+
       var newAmount = items[type] === undefined ? 1 : items[type] + 1;
 
       var newItem = {};
@@ -24241,7 +24239,7 @@ var MainPage = function (_React$Component) {
   }, {
     key: 'resetItems',
     value: function resetItems() {
-      this.setState(this.initialState());
+      this.setState(initialState());
     }
 
     // TODO: Something else than div for container
@@ -24292,13 +24290,15 @@ var buttonTypes = ["A", "B", "C", "D"];
 var makeButtons = function makeButtons(addItem) {
   return buttonTypes.map(function (name) {
     return _react2.default.createElement(
-      "a",
-      { key: name,
+      "button",
+      {
+        key: name,
         href: "#",
         className: "button arcade",
         onClick: function onClick() {
           return addItem(name);
-        } },
+        }
+      },
       name
     );
   });
@@ -24306,7 +24306,6 @@ var makeButtons = function makeButtons(addItem) {
 
 var Left = function Left(_ref) {
   var addItem = _ref.addItem;
-
   return _react2.default.createElement(
     "div",
     { className: "left" },
@@ -24360,7 +24359,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Right = function Right(_ref) {
   var items = _ref.items,
       resetItems = _ref.resetItems;
-
   return _react2.default.createElement(
     'div',
     { className: 'right' },
@@ -24373,8 +24371,6 @@ var Right = function Right(_ref) {
     })
   );
 };
-
-// TODO: Ask UX: What should scores show when no items picked? And when one of the items are not picked?
 
 exports.default = Right;
 
@@ -24402,7 +24398,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TotalScore = function TotalScore(_ref) {
   var items = _ref.items,
       resetItems = _ref.resetItems;
-
 
   var sum = function sum(a, b) {
     return a + b;
@@ -24447,7 +24442,7 @@ var TotalScore = function TotalScore(_ref) {
       'div',
       { className: 'controlPanel' },
       _react2.default.createElement(
-        'a',
+        'button',
         { className: 'button control', href: '#', onClick: resetItems },
         'New game'
       ),
@@ -24514,9 +24509,7 @@ var itemRows = function itemRows(items) {
 };
 
 var ItemList = function ItemList(_ref) {
-  var items = _ref.items,
-      resetItems = _ref.resetItems;
-
+  var items = _ref.items;
   return _react2.default.createElement(
     'div',
     { id: 'items' },
@@ -24560,7 +24553,8 @@ var ItemList = function ItemList(_ref) {
   );
 };
 
-// TODO: Ask UX: What should scores show when no items picked? And when one of the items are not picked?
+// TODO: Ask UX: What should scores show when no items picked?
+// And when one of the items are not picked?
 
 exports.default = ItemList;
 
@@ -24596,10 +24590,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var AdminPage = function (_React$Component) {
   _inherits(AdminPage, _React$Component);
 
-  function AdminPage(props) {
+  function AdminPage() {
     _classCallCheck(this, AdminPage);
 
-    return _possibleConstructorReturn(this, (AdminPage.__proto__ || Object.getPrototypeOf(AdminPage)).call(this, props));
+    return _possibleConstructorReturn(this, (AdminPage.__proto__ || Object.getPrototypeOf(AdminPage)).apply(this, arguments));
   }
 
   _createClass(AdminPage, [{

@@ -1,13 +1,8 @@
 import React from 'react';
 
-import {points, bonus} from './service/scoreService.js'
+import {points, bonus} from './service/scoreService.js';
 
 class AdminPage extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const pointRows = Object.entries(points)
       .map(([key, value]) => {
@@ -19,14 +14,14 @@ class AdminPage extends React.Component {
             <td>{value}</td>
             <td>{bonusText}</td>
           </tr>
-        )
-      }); 
+        );
+      });
 
     return (
       <div className="appContainer">
         <div id="adminPage">
           <h2>Point system</h2>
-          
+
           <table>
             <thead>
               <tr>

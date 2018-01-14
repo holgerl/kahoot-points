@@ -14,18 +14,17 @@ export const bonus = {
 export const calculateScore = (item, amount) => {
   if (bonus[item] === undefined) {
     return points[item] * amount;
-  } else {
-    const multiples = bonus[item][1];
-    const bonusScore = bonus[item][0];
-
-    const bonuses = Math.floor(amount/multiples);
-    
-    const rest = amount % multiples;
-
-    return bonusScore * bonuses + rest * points[item];
   }
+
+  const multiples = bonus[item][1];
+  const bonusScore = bonus[item][0];
+
+  const bonuses = Math.floor(amount / multiples);
+
+  const rest = amount % multiples;
+
+  return bonusScore * bonuses + rest * points[item];
 };
 
-export const calculateScoreWithoutBonus = (item, amount) => {
-  return points[item] * amount;
-};
+export const calculateScoreWithoutBonus = (item, amount) =>
+  points[item] * amount;
