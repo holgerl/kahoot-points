@@ -1,6 +1,12 @@
 @font-face {font-family: "Alte Haas Grotesk"; src: url("../font/AlteHaasGroteskRegular.ttf");}
 @font-face {font-family: "Alte Haas Grotesk"; src: url("../font/AlteHaasGroteskBold.ttf"); font-weight: bold;}
 
+@media screen and (min-device-width: 480px)  {
+  html {
+    font-size: 14px !important;
+  }
+}
+
 html {
   font-size: 16px;
 }
