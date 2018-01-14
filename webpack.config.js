@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'app'),
+  entry: ["babel-polyfill", path.resolve(__dirname, 'app')],
   output: {
     path: __dirname + '/docs',
     publicPath: '/',
@@ -40,7 +40,4 @@ module.exports = {
   ]
 }
 
-// TODO: Add ESLint
-// TODO: Sjekk at npm build gir samme resultat som npm start
-// TODO: Sjekk at alt polyfilles på IE
 // TODO: Add source mapping

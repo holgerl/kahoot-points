@@ -58,7 +58,7 @@ div {
   width: 10rem;
 }
 
-a.button {
+.button {
   text-decoration: none;
 
   border: none;
@@ -73,18 +73,18 @@ a.button {
   display: inline-block;
 }
 
-a.button:active {
+.button:active {
   background-color: #aaa;
   border-color: #888;
 }
 
-a.button.arcade {
+.button.arcade {
   font-size: 4rem;
   padding: 1rem 2.25rem;
   margin: 1.5rem;
 }
 
-a.button.control {
+.button.control {
   border-width: 0.3rem;
   font-size: 1.75rem;
   padding: 0.7rem;
