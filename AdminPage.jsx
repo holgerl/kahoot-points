@@ -35,7 +35,7 @@ class AdminPage extends React.Component {
             </tbody>
           </table>
 
-          <p>Go back to <a href="#/">the game</a></p>
+          <p>Go back to <a className="button control" href="#/">the game</a></p>
         </div>
       </div>
     );
