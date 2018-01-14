@@ -45,6 +45,4 @@ class MainPage extends React.Component {
   }
 }
 
-// TODO: Add PropTypes
-
 export default MainPage;

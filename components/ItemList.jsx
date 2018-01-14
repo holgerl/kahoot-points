@@ -35,6 +35,6 @@ const ItemList = ({items}) => (
 );
 
 // TODO: Ask UX: What should scores show when no items picked?
-// And when one of the items are not picked?
+// TODO: Ask UX: What about when one of the items are not picked?
 
 export default ItemList;
