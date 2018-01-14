@@ -62,8 +62,8 @@ a.button {
   text-decoration: none;
 
   border: none;
-  border-right: 0.4rem solid #999;
-  border-bottom: 0.4rem solid #999;
+  border-right: 0.4rem solid #AAA;
+  border-bottom: 0.4rem solid #888;
   border-radius: 2rem;
   background-color: #eee;
 
