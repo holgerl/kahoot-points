@@ -15,3 +15,8 @@ Output in `/docs`
 `npm start`
 
 Listens on `localhost:8081`
+
+## Run tests
+
+`npm install`
+`npm test`
