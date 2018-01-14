@@ -4,19 +4,25 @@ Try it here: <https://holgerl.github.io/kahoot-points/>
 
 ## Build
 
-`npm install`
-`webpack`
+```
+    npm install
+    webpack
+```
 
 Output in `/docs`
 
 ## Run dev-server
 
-`npm install`
-`npm start`
+```
+    npm install
+    npm start 
+```
 
 Listens on `localhost:8081`
 
 ## Run tests
 
-`npm install`
-`npm test`
+```
+    npm install
+    npm test
+```
