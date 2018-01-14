@@ -1,9 +1,9 @@
 import React from 'react';
 
-const buttonTypes = ["A", "B", "C", "D"];
+import {points} from '../service/scoreService.js';
 
 const makeButtons = addItem =>
-  buttonTypes.map(name => (
+  Object.keys(points).map(name => (
     <button
       key={name}
       href="#"
